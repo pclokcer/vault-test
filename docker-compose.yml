@@ -1,0 +1,13 @@
+version: '3.9'
+
+services:
+  vault-test:
+    image: vault:1.13.3
+    entrypoint: vault server -config=/vault/data/config.hcl
+    ports:
+      - 8200:8200
+      - 8201:8201
+    cap_add:
+      - IPC_LOCK
+    volumes:
+      - ./config/config.hcl:/vault/data/config.hcl
